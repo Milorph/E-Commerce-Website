@@ -30,7 +30,7 @@ $result = mysqli_query($conn, $sql);
 <body>
 <div class="container">
 		<h1>Product and Review</h1>
-
+		<a href="home.html">Back to Home</a>
 		<table>
 			<tr>
 				<th>Product ID</th>

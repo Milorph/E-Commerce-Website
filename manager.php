@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<h1>Manager</h1>
-
+    <a href="home.html">Back to Home</a>
     <?php
       // Set up database connection variables
       $servername = "cssql.seattleu.edu";

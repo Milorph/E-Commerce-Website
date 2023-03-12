@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>E-Commerce Website</title>
+	<style>
+		/* Global styles */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f5f5f5;
+		}
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		/* Header styles */
+		.header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+		}
+		.header h1 {
+			font-size: 36px;
+			margin: 0;
+			padding: 0;
+		}
+		.header nav {
+			display: flex;
+			align-items: center;
+		}
+		.header nav a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 18px;
+			margin: 0 10px;
+			padding: 10px;
+			border-radius: 5px;
+			transition: background-color 0.3s ease-in-out;
+		}
+		.header nav a:hover {
+			background-color: #fff;
+			color: #333;
+		}
+
+
+		/* Main content styles */
+		main {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			grid-gap: 20px;
+			justify-items: center;
+			}
+			.product img {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				width: 40%;
+				height: auto;
+			}
+
+
+			.container {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+			grid-gap: 20px;
+			justify-content: center;
+			align-content: center;
+			}
+
+
+			.product {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 20px;
+			background-color: #fff;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+			.product:hover {
+			box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+			}
+
+			.product h2 {
+			font-size: 24px;
+			font-weight: 700;
+			margin-bottom: 10px;
+			}
+
+			.product p {
+			font-size: 16px;
+			line-height: 1.5;
+			margin-bottom: 20px;
+			}
+
+			.product button {
+			background-color: #f39c12;
+			color: #fff;
+			font-size: 16px;
+			font-weight: 700;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			}
+
+		.product button:hover {
+			background-color: #fff;
+			color: #333;
+		}
+
+
+		/* Footer styles */
+		.footer {
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			text-align: center;
+		}
+		.footer p {
+			margin: 0;
+			padding: 0;
+        }
+        .footer a {
+        color: #fff;
+        text-decoration: none;
+        margin-left: 10px;
+        }
+
+
+
+        </style>
+
+        </head>
+        <body>
+            <header class="header">
+                <h1>The Wannabe Amazon</h1>
+                <nav>
+					<a href="landingpage.html">Home</a>
+					<a href="home.html">Dashboard</a>
+                    <a href="all_products.php">Products</a>
+                    <a href="wishlist.php">Wishlist</a>
+					<a href="cart.php">Cart</a>
+                    <a href="auth.php">Login</a>
+                </nav>
+            </header>
+    <main class="container">
+        <div class="product">
+            <img src="product1.jpg" alt="Product 1">
+            <h2>iPhone 13 Pro Max</h2>
+            <p>The iPhone 13 Pro Max features a 6.7-inch Super Retina XDR display with ProMotion technology, A15 Bionic chip with 6-core CPU and 5-core GPU, 5G connectivity, and advanced camera system with Ultra-Wide, Wide, and Telephoto lenses, Night mode, and ProRes video. The device also offers all-day battery life and is available in four colors.</p>
+			<h3>Price: $1399.99</h3>
+			<form method="POST" action="add_to_cart.php">
+				<button type="submit" name="product_id" value="1">Add to Cart</button>
+			</form>
+        </div>
+        <div class="product">
+            <img src="product2.jpg" alt="Product 2">
+            <h2>Thermaltake - Arctic i4790 Gaming Desktop</h2>
+            <p>
+				Built with powerful components to keep your PC hardware icy, the Artic i4790 is equipped with the new 13th Gen Intel Core i9-13900KF and NVIDIA GeForce RTX 4090. Supplemented with 64GB of DDR5 Memory and 3TB of NVMe storage for uncompromised gaming, streaming, and creating experience.</p>
+				<h3>Price: $4499.99</h3>
+				<form method="POST" action="add_to_cart.php">
+					<button type="submit" name="product_id" value="2">Add to Cart</button>
+				</form>
+        </div>
+        <div class="product">
+            <img src="product3.jpg" alt="Product 3">
+            <h2>Oculus Quest 2</h2>
+			<p>The Oculus Quest 2 is a virtual reality headset that offers wireless VR experiences without the need for a PC or console. The headset features high-resolution displays, six degrees of freedom (6DoF) tracking, and hand controllers for immersive gaming experiences. The Quest 2 also supports social VR experiences and video streaming.</p>
+			<h3>Price: $699.99</h3>
+			<form method="POST" action="add_to_cart.php">
+				<button type="submit" name="product_id" value="3">Add to Cart</button>
+			</form>
+        </div>
+        <div class="product">
+            <img src="product4.jpg" alt="Product 4">
+            <h2>Sony PlayStation 5</h2>
+            <p>The Sony PlayStation 5 is a next-generation video game console that offers immersive gaming experiences with its powerful hardware and innovative DualSense controller. The console features a custom AMD Zen 2 processor, an ultra-high-speed SSD, and up to 16GB of RAM. The PS5 also supports ray tracing and 3D audio, and is compatible with a vast library of games.</p>
+			<h3>Price: $499.99</h3>
+			<form method="POST" action="add_to_cart.php">
+				<button type="submit" name="product_id" value="4">Add to Cart</button>
+			</form>
+        </div>
+        <div class="product">
+            <img src="product5.jpg" alt="Product 5">
+            <h2>Nintendo Switch OLED Model</h2>
+            <p>The Nintendo Switch OLED Model is the latest version of the popular gaming console. It features a 7-inch OLED screen, enhanced audio, and up to 9 hours of battery life. The console offers both handheld and docked modes, and is compatible with a wide range of games.</p>
+			<h3>Price: $349.99</h3>
+            <form method="POST" action="add_to_cart.php">
+				<button type="submit" name="product_id" value="5">Add to Cart</button>
+			</form>
+        </div>
+        <div class="product">
+            <img src="product6.jpg" alt="Product 6">
+			<br />
+			<br /><br /><br />
+            <h2>Sony WH-1000XM4</h2>
+            <p>The Sony WH-1000XM4 is a wireless noise-cancelling headphone that offers advanced noise cancellation and high-quality sound. The headphones feature touch controls, Alexa and Google Assistant integration, and up to 30 hours of battery life. The WH-1000XM4 also comes with a carrying case and a 3.5mm audio cable.</p>
+			<h3>Price: $249.99</h3>
+			<form method="POST" action="add_to_cart.php">
+				<button type="submit" name="product_id" value="6">Add to Cart</button>
+			</form>
+
+			
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <p>&copy; 2023 The Wannabe Amazon. All rights reserved. | <a href="terms.html">Terms of Use</a> | <a href="privacy.html">Privacy Policy</a></
+        </footer>
+</body>
+</html>

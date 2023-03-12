@@ -63,9 +63,9 @@ CREATE TABLE Transaction (
 	  Address_Street VARCHAR(50) NOT NULL,
 	  Address_APT VARCHAR(30), 
 	  Courrier_Code INT,
-      User_ID INT,
 	  FOREIGN KEY (Courrier_Code) REFERENCES Courrier(Courrier_Code)
 );
+
 
 CREATE TABLE User (
   User_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -77,6 +77,7 @@ CREATE TABLE User (
   Trans_ID INT UNIQUE,
   foreign key (Trans_ID) REFERENCES Transaction(Trans_ID)
 );
+
 
 CREATE TABLE Item_Detail (
   Trans_ID INT,

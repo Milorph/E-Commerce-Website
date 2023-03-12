@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Online Shopping</title>
 	<style>
+		
 		/* Style the container */
 		.container {
 		max-width: 800px;
@@ -142,6 +143,7 @@
 	</style>
 </head>
 <body>
+	
 	<div class="container">
 		<h1>E-Commerce Website</h1>
     <hr>
@@ -168,7 +170,7 @@
     <ol>
       <ol><a href="query1.php"><h3>Query 1</h3></a> <p>This query joins two tables - Product and Manufacturer - on their common column Manu_ID. The result of the join is a table that includes the Product_ID, Product_Name, Product_Price and Manu_Name columns.</p></li>
       <ol><a href="query2.php"><h3>Query 2</h3></a> <p>This query calculates the total price of all transactions in the "Transaction" table and returns it as a single value in the result table.</p></li>
-      <ol><a href="query3.php"><h3>Query 3</h3></a> <p>This query returns the name of each manufacturer in the Manufacturer table along with the total number of distinct products associated with that manufacturer from the Product table</li>
+      <ol><a href="query3.php"><h3>Query 3</h3></a> <p>This SQL query retrieves the last 5 products added to the database, and then sorts them in ascending order based on their prices.</p></li>
       <ol><a href="query4.php"><h3>Query 4</h3></a> <p>This query retrieves the manufacturer IDs, names, and the total number of products they have produced, but only for manufacturers who have produced more than two products.</p></li>
       <ol><a href="query5.php"><h3>Query 5</h3></a> <p>This query would return all rows from the Review table and matching rows from the Product table. If there are products with no reviews, those rows would still be returned with NULL values in the columns from the Review table.</p></li>
     </ol>
@@ -211,22 +213,41 @@
 		tr:nth-child(even) {
 		background-color: #f2f2f2;
 		}
-		</style>
-	  <h2> Latest Products: </h2>
-	  <?php
-		// Connect to MySQL database
-		$servername = "cssql.seattleu.edu";
-		$username = "bd_rwidjaja1";
-		$password = "3300rwidjaja1-Bvkw";
-		$dbname = "bd_rwidjaja1";
-		$conn = new mysqli($servername, $username, $password, $dbname);
+	</style>
+		<h2> Latest Products: </h2>
 
+<form method="post" action="">
+	<select name="sort">
+		<option value="asc">Low to High</option>
+		<option value="desc">High to Low</option>
+	</select>
+	<input type="submit" name="submit" value="Sort">
+</form>
+
+<?php
+	// Connect to MySQL database
+	$servername = "cssql.seattleu.edu";
+	$username = "bd_rwidjaja1";
+	$password = "3300rwidjaja1-Bvkw";
+	$dbname = "bd_rwidjaja1";
+	$conn = new mysqli($servername, $username, $password, $dbname);
+
+	// Check if form has been submitted and sort by user-selected option
+	if (isset($_POST['submit'])) {
+		$sort = $_POST['sort'];
+		$sql = "SELECT * FROM (
+			SELECT * FROM Product ORDER BY Product_ID DESC LIMIT 5
+		) AS subquery ORDER BY Product_Price $sort
+		";
+	} else {
 		// Query database to retrieve latest 5 products by ID
 		$sql = "SELECT * FROM Product ORDER BY Product_ID DESC LIMIT 5";
-		$result = $conn->query($sql);
+	}
 
-		// Output retrieved data in an HTML table
-		if ($result->num_rows > 0) {
+	$result = $conn->query($sql);
+
+	// Output retrieved data in an HTML table
+	if ($result->num_rows > 0) {
 		echo "<table>";
 		echo "<tr><th>Product Name</th><th>Product Category</th><th>Product Price</th><th>Product Quantity</th></tr>";
 		while($row = $result->fetch_assoc()) {
@@ -238,13 +259,14 @@
 			echo "</tr>";
 		}
 		echo "</table>";
-		} else {
+	} else {
 		echo "No products found.";
-		}
+	}
 
-		// Close database connection
-		$conn->close();
-		?>
+	// Close database connection
+	$conn->close();
+?>
+
       </div>
 	  
       

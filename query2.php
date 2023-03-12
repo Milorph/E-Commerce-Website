@@ -26,6 +26,7 @@ $result = mysqli_query($conn, $sql);
 <body>
 	<div class="container">
 		<h1>Transaction Total Price</h1>
+		<a href="home.html">Back to Home</a>
 		<?php while($row = mysqli_fetch_assoc($result)) { ?>
 			<p>Total Price: $<?php echo number_format($row["Total_Price"], 2); ?></p>
 		<?php } ?>

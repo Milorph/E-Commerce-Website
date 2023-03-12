@@ -32,7 +32,7 @@ $result = mysqli_query($conn, $sql);
 <body>
 <div class="container">
 		<h1>Manufacturer</h1>
-
+		<a href="home.html">Back to Home</a>
 		<table>
 			<tr>
 				<th>Manu_ID</th>

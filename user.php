@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<h1>Users</h1>
-
+    <a href="home.html">Back to Home</a>
     <?php
 
     // Set up database connection variables

@@ -2,28 +2,27 @@
 
 
 
-// Set up database connection variables
-$servername = "cssql.seattleu.edu";
-$username = "bd_rwidjaja1";
-$password = "3300rwidjaja1-Bvkw";
-$dbname = "bd_rwidjaja1";
+	// Set up database connection variables
+	$servername = "cssql.seattleu.edu";
+	$username = "bd_rwidjaja1";
+	$password = "3300rwidjaja1-Bvkw";
+	$dbname = "bd_rwidjaja1";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+	// Create connection
+	$conn = mysqli_connect($servername, $username, $password, $dbname);
+	// Check connection
+	if (!$conn) {
+		die("Connection failed: " . mysqli_connect_error());
+	}
 
 
-$sql = "SELECT Manu_Name, 
-        (SELECT COUNT(DISTINCT Product_ID) 
-        FROM Product 
-        WHERE Manu_ID = Manufacturer.Manu_ID) AS Total_Products
-        FROM Manufacturer;
+	$sql = "SELECT * FROM (
+			SELECT * FROM Product ORDER BY Product_ID DESC LIMIT 5
+			) AS subquery ORDER BY Product_Price
 
-        ";
-$result = mysqli_query($conn, $sql);
+			";
+			
+	$result = mysqli_query($conn, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -35,16 +34,26 @@ $result = mysqli_query($conn, $sql);
 <body>
 <div class="container">
 		<h1>Manufacturer</h1>
-
+		<a href="home.html">Back to Home</a>
 		<table>
 			<tr>
-				<th>Manu_Name</th>
-				<th>Total Products</th>
+				<th>Product_ID</th>
+				<th>Product_Name</th>
+				<th>Product_Price</th>
+				<th>Product_Category</th>
+				<th>Product_Quantity</th>
+				<th>Manu_ID</th>
+				<th>Avg_Star_Rate</th>
 			</tr>
 			<?php while($row = mysqli_fetch_assoc($result)) { ?>
 			<tr>
-				<td><?php echo $row["Manu_Name"]; ?></td>
-				<td><?php echo $row["Total_Products"]; ?></td>
+				<td><?php echo $row["Product_ID"]; ?></td>
+				<td><?php echo $row["Product_Name"]; ?></td>
+				<td><?php echo $row["Product_Price"]; ?></td>
+				<td><?php echo $row["Product_Category"]; ?></td>
+				<td><?php echo $row["Product_Quantity"]; ?></td>
+				<td><?php echo $row["Manu_ID"]; ?></td>
+				<td><?php echo $row["Avg_Star_Rate"]; ?></td>
 			</tr>
 			<?php } ?>
       <?php 
