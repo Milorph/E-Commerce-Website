@@ -28,12 +28,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Manufacturer</title>
+	<title>Latest cheapest products</title>
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
-		<h1>Manufacturer</h1>
+		<h1>Latest cheapest products</h1>
 		<a href="home.html">Back to Home</a>
 		<table>
 			<tr>

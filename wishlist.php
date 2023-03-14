@@ -40,7 +40,7 @@
                     echo "<td>" . $row["Product_Name"] . "</td>";
                     echo "<td>" . $row["Product_Category"] . "</td>";
                     echo "<td>" . $row["Product_Price"] . "</td>";
-                    echo "<td><a href='remove_from_wishlist.php?product_id=" . $product_id . "' class='wishlist-btn'>Remove</a></td>";
+                    echo "<td><a href='remove_from_wishlist.php?product_id=" . $product_id . "' class='wishlist-btn'>❌</a></td>";
                     echo "</tr>";
                 }
             }

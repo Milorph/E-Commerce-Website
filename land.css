@@ -11,6 +11,8 @@ body {
   justify-content: center;
   align-items: center;
   z-index: auto;
+  overflow-x: hidden; 
+  overflow-y: hidden;
 }
 
 a.button1{

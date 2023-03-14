@@ -1,7 +1,7 @@
 USE bd_rwidjaja1;  
 
 -- DROP TABLE Country, Courrier, Item_Detail, Location, Manager, Manufacturer, Product, Review, Transaction, User;
--- SELECT * FROM Transaction;
+-- SELECT * FROM Transaction WHERE Trans_ID = 1;
 
 
 CREATE TABLE Manager (
@@ -53,18 +53,6 @@ CREATE TABLE Courrier (
 	  Courrier_Name VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE Transaction (
-
-	  Trans_ID INT PRIMARY KEY NOT NULL,
-	  Trans_Total_Price DECIMAL(10,2) NOT NULL DEFAULT 0,
-	  Address_Country VARCHAR(30) NOT NULL, 
-	  Address_State VARCHAR(30) NOT NULL,
-	  Address_ZipCode VARCHAR(15) NOT NULL, 
-	  Address_Street VARCHAR(50) NOT NULL,
-	  Address_APT VARCHAR(30), 
-	  Courrier_Code INT,
-	  FOREIGN KEY (Courrier_Code) REFERENCES Courrier(Courrier_Code)
-);
 
 
 CREATE TABLE User (
@@ -73,9 +61,22 @@ CREATE TABLE User (
   email VARCHAR(60) NOT NULL UNIQUE, 
   password VARCHAR(50) NOT NULL,
   phone varchar(30),
-  BankCard_Number VARCHAR(16) UNIQUE,
-  Trans_ID INT UNIQUE,
-  foreign key (Trans_ID) REFERENCES Transaction(Trans_ID)
+  BankCard_Number VARCHAR(16) UNIQUE
+);
+
+CREATE TABLE Transaction (
+
+	  Trans_ID INT PRIMARY KEY NOT NULL,
+      User_ID INT,
+	  Trans_Total_Price DECIMAL(10,2) NOT NULL DEFAULT 0,
+	  Address_Country VARCHAR(30) NOT NULL, 
+	  Address_State VARCHAR(30) NOT NULL,
+	  Address_ZipCode VARCHAR(15) NOT NULL, 
+	  Address_Street VARCHAR(50) NOT NULL,
+	  Address_APT VARCHAR(30), 
+	  Courrier_Code INT,
+	  FOREIGN KEY (Courrier_Code) REFERENCES Courrier(Courrier_Code),
+      FOREIGN KEY (User_ID) REFERENCES User(User_ID)
 );
 
 
@@ -205,20 +206,33 @@ END $$
 
 DELIMITER ;
 
+-- Inserting into the User table
+
+INSERT INTO User (User_ID, Profile_Name, email, password, BankCard_Number)
+VALUES (1, 'John Smith', 'jsmith123@gmail.com', 'password123', '1234567890123456'),
+	   (2, 'Jane Doe', 'jdoe456@gmail.com', 'abc123', '9876543210987654'),
+	   (3, 'Michael Johnson', 'mjohnson789@gmail.com', 'qwerty', '1111222233334444'),
+	   (4, 'Emily Rodriguez', 'erodriguez321@gmail.com','p@ssw0rd', '5555666677778888'),
+	   (5, 'William Lee', 'wlee777@gmail.com',  'letmein', '4444555566667777'),
+	   (6, 'Sophia Hernandez', 'shernandez456@gmail.com', 'secret', '8888999911112222'),
+	   (7, 'David Kim',  'dkim890@gmail.com','password123', '7777888899990000'),
+	   (8, 'Sarah Thompson', 'sthompson234@gmail.com', 'abcdef', '2222333344445555'),
+	   (9, 'Jacob Nguyen',  'jnguyen567@gmail.com','123456', '6666777788889999'),
+	   (10, 'Olivia Garcia', 'ogarcia789@gmail.com', 'password', '3333444455556666');
 
 -- Inserting into Transaction table
-INSERT INTO Transaction (Trans_ID, Address_Country, Address_State, Address_ZipCode, Address_Street, Address_APT, Courrier_Code)
+INSERT INTO Transaction (Trans_ID, User_ID, Address_Country, Address_State, Address_ZipCode, Address_Street, Address_APT, Courrier_Code)
 VALUES
-(1, 'US', 'New York', '10001', 'Fifth Ave', 'Apt 2B', 1),
-(2, 'DE', 'Bavaria', '80333', 'Leopoldstrasse', NULL, 2),
-(3, 'KR', 'Seoul', '06351', 'Samsung-ro', NULL, 3),
-(4, 'US', 'California', '90210', 'Rodeo Dr', 'Suite 301', 4),
-(5, 'US', 'Georgia', '30313', 'Martin Luther King Jr Dr SW', NULL, 5),
-(6, 'US', 'New York', '10022', 'Park Ave', 'Floor 15', 6),
-(7, 'CH', 'Vevey', '1800', 'Avenue Nestle', '3rd Floor', 7),
-(8, 'NL', 'Rotterdam', '3012', 'Weena', 'Unit 2B', 8),
-(9, 'JP', 'Tokyo', '105-0014', 'Roppongi', 'Apartment 101', 9),
-(10,'JP', 'Aichi', '471-8571', 'Toyota-cho', NULL, 10);
+(1, 1, 'US', 'New York', '10001', 'Fifth Ave', 'Apt 2B', 1),
+(2, 2, 'DE', 'Bavaria', '80333', 'Leopoldstrasse', NULL, 2),
+(3, 3, 'KR', 'Seoul', '06351', 'Samsung-ro', NULL, 3),
+(4, 4, 'US', 'California', '90210', 'Rodeo Dr', 'Suite 301', 4),
+(5, 5, 'US', 'Georgia', '30313', 'Martin Luther King Jr Dr SW', NULL, 5),
+(6, 6, 'US', 'New York', '10022', 'Park Ave', 'Floor 15', 6),
+(7, 7, 'CH', 'Vevey', '1800', 'Avenue Nestle', '3rd Floor', 7),
+(8, 8, 'NL', 'Rotterdam', '3012', 'Weena', 'Unit 2B', 8),
+(9, 9, 'JP', 'Tokyo', '105-0014', 'Roppongi', 'Apartment 101', 9),
+(10, 10, 'JP', 'Aichi', '471-8571', 'Toyota-cho', NULL, 10);
 
 
 DELIMITER $$
@@ -247,19 +261,6 @@ VALUES (1, 1, 2),
        (9, 9, 1),
        (10, 10, 2);
        
--- Inserting into the User table
-
-INSERT INTO User (User_ID, Profile_Name, email, password, BankCard_Number, Trans_ID)
-VALUES (1, 'John Smith', 'jsmith123@gmail.com', 'password123', '1234567890123456', 1),
-	   (2, 'Jane Doe', 'jdoe456@gmail.com', 'abc123', '9876543210987654', 2),
-	   (3, 'Michael Johnson', 'mjohnson789@gmail.com', 'qwerty', '1111222233334444', 3),
-	   (4, 'Emily Rodriguez', 'erodriguez321@gmail.com','p@ssw0rd', '5555666677778888', 4),
-	   (5, 'William Lee', 'wlee777@gmail.com',  'letmein', '4444555566667777', 5),
-	   (6, 'Sophia Hernandez', 'shernandez456@gmail.com', 'secret', '8888999911112222', 6),
-	   (7, 'David Kim',  'dkim890@gmail.com','password123', '7777888899990000', 7),
-	   (8, 'Sarah Thompson', 'sthompson234@gmail.com', 'abcdef', '2222333344445555', 8),
-	   (9, 'Jacob Nguyen',  'jnguyen567@gmail.com','123456', '6666777788889999', 9),
-	   (10, 'Olivia Garcia', 'ogarcia789@gmail.com', 'password', '3333444455556666', 10);
        
 DELIMITER $$
 CREATE TRIGGER review_insert_trigger

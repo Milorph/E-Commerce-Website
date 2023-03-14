@@ -7,11 +7,11 @@ $products = array(
     ),
     2 => array(
         'name' => 'Thermaltake - Arctic i4790 Gaming Desktop',
-        'price' => 4499.99
+        'price' => 4599.99
     ),
     3 => array(
         'name' => 'Oculus Quest 2',
-        'price' => 699.99
+        'price' => 399.99
     ),
     4 => array(
         'name' => 'Sony PlayStation 5',

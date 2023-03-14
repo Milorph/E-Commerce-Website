@@ -31,9 +31,9 @@
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
       echo '<table>';
-      echo '<tr><th>User ID</th><th>Profile Name</th><th>Email</th><th>Password</th><th>Phone Number</th><th>Bank Card Number</th><th>Transaction ID</th></tr>';
+      echo '<tr><th>User ID</th><th>Profile Name</th><th>Email</th><th>Password</th><th>Phone Number</th><th>Bank Card Number</th></tr>';
       while($row = mysqli_fetch_assoc($result)) {
-        echo '<tr><td>' . $row["User_ID"]. '</td><td>' . $row["Profile_Name"]. '</td><td>' . $row["email"] . '</td><td>' . $row["password"]. '</td><td>' . $row["phone"]. '</td><td>' . $row["BankCard_Number"] . '</td><td>' . $row["Trans_ID"] . '</td></tr>';
+        echo '<tr><td>' . $row["User_ID"]. '</td><td>' . $row["Profile_Name"]. '</td><td>' . $row["email"] . '</td><td>' . $row["password"]. '</td><td>' . $row["phone"]. '</td><td>' . $row["BankCard_Number"] . '</td></tr>';
       }
       echo '</table>';
     } else {
